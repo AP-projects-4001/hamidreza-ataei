@@ -1,5 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
+#include "sign_up.h"
 #include <QMessageBox>
 #include <QFile>
 
@@ -15,7 +16,8 @@ login::~login()
 
 void login::on_pushButton_2_clicked()
 {
-
+    sign_up *s_u = new sign_up(this);
+    s_u->exec();
 }
 
 void login::on_pushButton_3_clicked()
