@@ -2,6 +2,7 @@
 #include "sign_up.h"
 #include "ui_login.h"
 #include "forget_pas.h"
+#include "management.h"
 #include <QMessageBox>
 #include <QFile>
 #include <QFileDialog>
@@ -59,8 +60,10 @@ void login::on_pushButton_3_clicked()
         msgBox->exec();
         return;
     }
+    managment *m = new managment(ui->lineEdit->text());
+    m->show();
     QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle("Successful Log In");
+    msgBox->setWindowTitle("successful log in");
     msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
     msgBox->setInformativeText("successfully log in ✔");
     this->close();

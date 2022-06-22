@@ -79,8 +79,11 @@ void sign_up::on_buttonBox_accepted()
     file.write("\n");
     file.close();
     QDir().mkdir("C:/Users/3atae/Desktop/project/" + ui->lineEdit_2->text());
+    QFile file_2("C:/Users/3atae/Desktop/project/" + ui->lineEdit_2->text() + "/projects.txt");
+    file_2.open(QIODevice::WriteOnly);
+    file_2.close();
     QMessageBox *msgBox_2 = new QMessageBox(this);
-    msgBox_2->setWindowTitle("Successful Sign Up");
+    msgBox_2->setWindowTitle("successful sign up");
     msgBox_2->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
     msgBox_2->setInformativeText("the account was created successfully ✔");
     msgBox_2->exec();

@@ -74,7 +74,7 @@ void forget_pas::on_buttonBox_accepted()
     file.remove();
     file_2.rename("C:/Users/3atae/Desktop/project/accounts_data.txt");
     QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle("Successful Change Password");
+    msgBox->setWindowTitle("successful change password");
     msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
     msgBox->setInformativeText("password changed successfully ✔");
     msgBox->exec();
