@@ -1,8 +1,10 @@
 #include "login.h"
-#include "ui_login.h"
 #include "sign_up.h"
+#include "ui_login.h"
+#include "forget_pas.h"
 #include <QMessageBox>
 #include <QFile>
+#include <QFileDialog>
 
 login::login(QWidget *parent) : QMainWindow(parent) , ui(new Ui::login)
 {
@@ -67,5 +69,6 @@ void login::on_pushButton_3_clicked()
 
 void login::on_pushButton_clicked()
 {
-
+    forget_pas *f_s = new forget_pas(this);
+    f_s->exec();
 }

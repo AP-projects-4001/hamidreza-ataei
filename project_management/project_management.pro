@@ -5,15 +5,18 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 
 SOURCES += \
+    forget_pas.cpp \
     main.cpp \
     login.cpp \
     sign_up.cpp
 
 HEADERS += \
+    forget_pas.h \
     login.h \
     sign_up.h
 
 FORMS += \
+    forget_pas.ui \
     login.ui \
     sign_up.ui
 
