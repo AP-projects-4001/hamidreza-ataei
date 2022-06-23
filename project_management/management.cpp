@@ -1,6 +1,7 @@
 #include "management.h"
 #include "ui_management.h"
 #include "change_photo.h"
+#include "change_information.h"
 #include <QFile>
 #include <QListWidgetItem>
 #include <QGraphicsPixmapItem>
@@ -71,7 +72,9 @@ void managment::on_pushButton_clicked()
 
 void managment::on_pushButton_2_clicked()
 {
-
+    change_information *c_i = new change_information(this);
+    c_i->exec();
+    set_name();
 }
 
 void managment::on_pushButton_3_clicked()

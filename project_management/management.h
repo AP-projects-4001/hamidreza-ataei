@@ -2,6 +2,7 @@
 #define MANAGEMENT_H
 
 #include "change_photo.h"
+#include "change_information.h"
 #include <QMainWindow>
 
 namespace Ui
@@ -14,6 +15,8 @@ class managment : public QMainWindow
     Q_OBJECT
 
     friend void change_photo::on_buttonBox_accepted();
+
+    friend void change_information::on_buttonBox_accepted();
 
 public:
     explicit managment(QString username, QWidget *parent = nullptr);

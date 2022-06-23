@@ -5,6 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 
 SOURCES += \
+    change_information.cpp \
     change_photo.cpp \
     forget_pas.cpp \
     main.cpp \
@@ -13,6 +14,7 @@ SOURCES += \
     sign_up.cpp
 
 HEADERS += \
+    change_information.h \
     change_photo.h \
     forget_pas.h \
     login.h \
@@ -20,6 +22,7 @@ HEADERS += \
     sign_up.h
 
 FORMS += \
+    change_information.ui \
     change_photo.ui \
     forget_pas.ui \
     login.ui \
