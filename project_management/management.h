@@ -1,6 +1,7 @@
 #ifndef MANAGEMENT_H
 #define MANAGEMENT_H
 
+#include "change_photo.h"
 #include <QMainWindow>
 
 namespace Ui
@@ -11,6 +12,8 @@ namespace Ui
 class managment : public QMainWindow
 {
     Q_OBJECT
+
+    friend void change_photo::on_buttonBox_accepted();
 
 public:
     explicit managment(QString username, QWidget *parent = nullptr);
@@ -23,6 +26,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::managment *ui;

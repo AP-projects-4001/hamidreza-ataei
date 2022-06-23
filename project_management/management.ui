@@ -199,6 +199,9 @@ background-color: rgb(50, 50, 50);</string>
     <property name="cursor" stdset="0">
      <cursorShape>ArrowCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>all projects</string>
+    </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(171, 171, 171);
 background-color: rgb(50, 50, 50);</string>
@@ -253,7 +256,7 @@ background-color: rgb(50, 50, 50);</string>
       <family>Georgia</family>
       <pointsize>12</pointsize>
       <weight>75</weight>
-      <italic>true</italic>
+      <italic>false</italic>
       <bold>true</bold>
      </font>
     </property>

@@ -1,9 +1,11 @@
 #include "management.h"
 #include "ui_management.h"
+#include "change_photo.h"
 #include <QFile>
 #include <QListWidgetItem>
 #include <QGraphicsPixmapItem>
 #include <QVBoxLayout>
+#include <QMessageBox>
 
 QString managment::username = NULL;
 
@@ -62,16 +64,24 @@ managment::~managment()
 
 void managment::on_pushButton_clicked()
 {
+    change_photo *c_p = new change_photo(this);
+    c_p->exec();
     set_profile();
 }
 
 void managment::on_pushButton_2_clicked()
 {
-    set_name();
+
 }
 
 void managment::on_pushButton_3_clicked()
 {
-    set_projects();
+
+}
+
+
+void managment::on_pushButton_4_clicked()
+{
+
 }
 
