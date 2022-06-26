@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include "create_project.h"
 #include <QMessageBox>
+#include "project_window_1.h"
 
 QString managment::username = NULL;
 
@@ -88,6 +89,43 @@ void managment::on_pushButton_3_clicked()
 
 void managment::on_pushButton_4_clicked()
 {
-
+    if (ui->lineEdit->text() == "")
+    {
+        QMessageBox *msgBox = new QMessageBox(this);
+        msgBox->setWindowTitle("Error");
+        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        msgBox->setInformativeText("field is required ✘");
+        msgBox->exec();
+        return;
+    }
+    QFile file("C:/Users/3atae/Desktop/project/" + username + "/projects.txt");
+    file.open(QIODevice::ReadOnly);
+    bool check = 0;
+    int access_level;
+    while (!file.atEnd())
+    {
+        if (ui->lineEdit->text() + '\n' == file.readLine())
+        {
+            check = 1;
+            access_level = file.readLine().toInt();
+            break;
+        }
+        file.readLine();
+    }
+    if (check == 0)
+    {
+        QMessageBox *msgBox = new QMessageBox(this);
+        msgBox->setWindowTitle("Error");
+        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        msgBox->setInformativeText("project name is wrong ✘");
+        msgBox->exec();
+        return;
+    }
+    if (access_level == 1)
+    {
+        this->setEnabled(false);
+        project_window_1 *p_w = new project_window_1(ui->lineEdit->text(), this);
+        p_w->show();
+    }
 }
 

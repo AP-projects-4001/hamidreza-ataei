@@ -5,6 +5,7 @@
 #include "change_information.h"
 #include "create_project.h"
 #include <QMainWindow>
+#include "project_window_1.h"
 
 namespace Ui
 {
@@ -20,6 +21,9 @@ class managment : public QMainWindow
     friend void change_information::on_buttonBox_accepted();
 
     friend void create_project::on_buttonBox_accepted();
+
+    friend void project_window_1::set_users();
+
 
 public:
     explicit managment(QString username, QWidget *parent = nullptr);

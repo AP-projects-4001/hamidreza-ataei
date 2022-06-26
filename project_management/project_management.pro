@@ -12,6 +12,7 @@ SOURCES += \
     main.cpp \
     login.cpp \
     management.cpp \
+    project_window_1.cpp \
     sign_up.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     forget_pas.h \
     login.h \
     management.h \
+    project_window_1.h \
     sign_up.h
 
 FORMS += \
@@ -30,6 +32,7 @@ FORMS += \
     forget_pas.ui \
     login.ui \
     management.ui \
+    project_window_1.ui \
     sign_up.ui
 
 # Default rules for deployment.
