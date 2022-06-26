@@ -7,6 +7,7 @@ CONFIG += c++11
 SOURCES += \
     change_information.cpp \
     change_photo.cpp \
+    create_project.cpp \
     forget_pas.cpp \
     main.cpp \
     login.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
 HEADERS += \
     change_information.h \
     change_photo.h \
+    create_project.h \
     forget_pas.h \
     login.h \
     management.h \
@@ -24,6 +26,7 @@ HEADERS += \
 FORMS += \
     change_information.ui \
     change_photo.ui \
+    create_project.ui \
     forget_pas.ui \
     login.ui \
     management.ui \

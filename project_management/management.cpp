@@ -6,6 +6,7 @@
 #include <QListWidgetItem>
 #include <QGraphicsPixmapItem>
 #include <QVBoxLayout>
+#include "create_project.h"
 #include <QMessageBox>
 
 QString managment::username = NULL;
@@ -79,7 +80,9 @@ void managment::on_pushButton_2_clicked()
 
 void managment::on_pushButton_3_clicked()
 {
-
+    create_project *c_p = new create_project(this);
+    c_p->exec();
+    set_projects();
 }
 
 
