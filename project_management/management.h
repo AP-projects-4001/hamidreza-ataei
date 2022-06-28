@@ -6,6 +6,7 @@
 #include "create_project.h"
 #include <QMainWindow>
 #include "project_window_1.h"
+#include "overall_status.h"
 
 namespace Ui
 {
@@ -24,6 +25,7 @@ class managment : public QMainWindow
 
     friend void project_window_1::set_users();
 
+    friend void overall_status::set_all(int check);
 
 public:
     explicit managment(QString username, QWidget *parent = nullptr);

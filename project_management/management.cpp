@@ -104,13 +104,15 @@ void managment::on_pushButton_4_clicked()
     int access_level;
     while (!file.atEnd())
     {
-        if (ui->lineEdit->text() + '\n' == file.readLine())
+        QString temp =  file.readLine();
+        if (ui->lineEdit->text() + '\n' == temp)
         {
             check = 1;
             access_level = file.readLine().toInt();
             break;
         }
-        file.readLine();
+        else
+            file.readLine();
     }
     if (check == 0)
     {

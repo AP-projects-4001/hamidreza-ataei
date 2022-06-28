@@ -12,6 +12,7 @@ SOURCES += \
     main.cpp \
     login.cpp \
     management.cpp \
+    overall_status.cpp \
     project_window_1.cpp \
     sign_up.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     forget_pas.h \
     login.h \
     management.h \
+    overall_status.h \
     project_window_1.h \
     sign_up.h
 
@@ -32,6 +34,7 @@ FORMS += \
     forget_pas.ui \
     login.ui \
     management.ui \
+    overall_status.ui \
     project_window_1.ui \
     sign_up.ui
 
