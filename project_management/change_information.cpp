@@ -25,7 +25,7 @@ void change_information::on_buttonBox_accepted()
         msgBox->exec();
         return;
     }
-    QFile file("C:/Users/3atae/Desktop/project/accounts_data.txt");
+    QFile file("C:/project/accounts_data.txt");
     file.open(QIODevice::ReadOnly);
     while (!file.atEnd())
     {
@@ -33,7 +33,7 @@ void change_information::on_buttonBox_accepted()
         QString temp = file.readLine();
         QString temp_2 = file.readLine();
         QString temp_3 = file.readLine();
-        if (temp != managment::username + '\n')
+        if (temp != management::username + '\n')
         {
             if (temp == ui->lineEdit_2->text() + '\n')
             {
@@ -70,7 +70,7 @@ void change_information::on_buttonBox_accepted()
     }
     file.close();
     file.open(QIODevice::ReadOnly);
-    QFile file_2("C:/Users/3atae/Desktop/project/temp_account.txt");
+    QFile file_2("C:/project/temp_account.txt");
     file_2.open(QIODevice::WriteOnly);
     while (!file.atEnd())
     {
@@ -78,7 +78,7 @@ void change_information::on_buttonBox_accepted()
         QString temp_2 = file.readLine();
         QString temp_3 = file.readLine();
         QString temp_4 = file.readLine();
-        if (temp_2 == managment::username + '\n')
+        if (temp_2 == management::username + '\n')
         {
             file_2.write(ui->lineEdit->text().toStdString().c_str());
             file_2.write("\n");
@@ -98,11 +98,11 @@ void change_information::on_buttonBox_accepted()
         }
         file_2.write(file.readLine());
     }
-    managment::username = ui->lineEdit_2->text();
+    management::username = ui->lineEdit_2->text();
     file.close();
     file_2.close();
     file.remove();
-    file_2.rename("C:/Users/3atae/Desktop/project/accounts_data.txt");
+    file_2.rename("C:/project/accounts_data.txt");
     QMessageBox *msgBox = new QMessageBox(this);
     msgBox->setWindowTitle("successful change information ✔");
     msgBox->setStyleSheet("QLabel{min-width: 250px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");

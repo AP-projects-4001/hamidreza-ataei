@@ -25,11 +25,12 @@ void create_project::on_buttonBox_accepted()
         msgBox->exec();
         return;
     }
-    QFile file("C:/Users/3atae/Desktop/project/" + managment::username + '/' + "/projects.txt");
+    QFile file("C:/project/" + management::username + '/' + "/projects.txt");
     file.open(QIODevice::ReadOnly);
     while (!file.atEnd())
     {
-        if (ui->lineEdit->text() + '\n' == file.readLine())
+        QString temp = file.readLine();
+        if (ui->lineEdit->text() + '\n' == temp)
         {
             QMessageBox *msgBox = new QMessageBox(this);
             msgBox->setWindowTitle("Error");
@@ -38,21 +39,22 @@ void create_project::on_buttonBox_accepted()
             msgBox->exec();
             return;
         }
+        file.readLine();
     }
     file.close();
-    QDir().mkdir("C:/Users/3atae/Desktop/project/" + managment::username + '/' + ui->lineEdit->text());
-    QFile file_2("C:/Users/3atae/Desktop/project/" + managment::username + "/projects.txt");
+    QDir().mkdir("C:/project/" + management::username + '/' + ui->lineEdit->text());
+    QFile file_2("C:/project/" + management::username + "/projects.txt");
     file_2.open(QIODevice::Append);
     file_2.write(ui->lineEdit->text().toStdString().c_str());
     file_2.write("\n1\n");
     file_2.close();
-    QDir().mkdir("C:/Users/3atae/Desktop/project/" + managment::username + '/' + ui->lineEdit->text() + "/message");
-    QFile file_3("C:/Users/3atae/Desktop/project/" + managment::username + '/' + ui->lineEdit->text() + "/all_tasks.txt");
+    QDir().mkdir("C:/project/" + management::username + '/' + ui->lineEdit->text() + "/message");
+    QFile file_3("C:/project/" + management::username + '/' + ui->lineEdit->text() + "/all_tasks.txt");
     file_3.open(QIODevice::WriteOnly);
     file_3.close();
-    QFile file_4("C:/Users/3atae/Desktop/project/" + managment::username + '/' + ui->lineEdit->text() + "/all_users.txt");
+    QFile file_4("C:/project/" + management::username + '/' + ui->lineEdit->text() + "/all_users.txt");
     file_4.open(QIODevice::WriteOnly);
-    file_4.write(managment::username.toStdString().c_str());
+    file_4.write(management::username.toStdString().c_str());
     file_4.write("\n1\n");
     file_4.close();
     QMessageBox *msgBox = new QMessageBox(this);

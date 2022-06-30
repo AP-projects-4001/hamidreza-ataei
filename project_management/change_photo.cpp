@@ -41,7 +41,7 @@ void change_photo::on_buttonBox_accepted()
         msgBox->exec();
         return;
     }
-    QString file_name = "C:/Users/3atae/Desktop/project/" + managment::username + "/image.jpg";
+    QString file_name = "C:/project/" + management::username + "/image.jpg";
     QFile file(file_name);
     if (file.open(QIODevice::ReadOnly | QFile::Text))
         file.remove();

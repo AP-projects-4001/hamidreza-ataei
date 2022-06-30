@@ -1,30 +1,24 @@
-#include "project_window_1.h"
-#include "ui_project_window_1.h"
+#include "project_window_2.h"
+#include "ui_project_window_2.h"
 #include <QFile>
 #include "management.h"
 #include "overall_status.h"
-#include <QListWidget>
 
-QString project_window_1::project_name = NULL;
+QString project_window_2::project_name = NULL;
 
-project_window_1::project_window_1(QString project_name, QWidget *parent) : QMainWindow(parent), ui(new Ui::project_window_1)
+project_window_2::project_window_2(QString project_name, QWidget *parent) : QMainWindow(parent), ui(new Ui::project_window_2)
 {
     ui->setupUi(this);
     this->project_name = project_name;
     set_users();
 }
 
-project_window_1::~project_window_1()
+project_window_2::~project_window_2()
 {
     delete ui;
 }
 
-void project_window_1::on_pushButton_clicked()
-{
-
-}
-
-void project_window_1::set_users()
+void project_window_2::set_users()
 {
     ui->listWidget->clear();
     QListWidgetItem *widget = new QListWidgetItem();
@@ -49,43 +43,32 @@ void project_window_1::set_users()
     file.close();
 }
 
-void project_window_1::on_pushButton_4_clicked()
+void project_window_2::on_pushButton_6_clicked()
 {
-
-}
-
-
-void project_window_1::on_pushButton_6_clicked()
-{
-    overall_status *o_s = new overall_status(1, this);
+    overall_status *o_s = new overall_status(2, this);
     o_s->exec();
 }
 
 
-void project_window_1::on_pushButton_3_clicked()
+void project_window_2::on_pushButton_3_clicked()
 {
 
 }
 
 
-void project_window_1::on_pushButton_5_clicked()
-{
-
-}
-
-void project_window_1::on_pushButton_8_clicked()
+void project_window_2::on_pushButton_7_clicked()
 {
 
 }
 
 
-void project_window_1::on_pushButton_2_clicked()
+void project_window_2::on_pushButton_2_clicked()
 {
 
 }
 
-void project_window_1::on_pushButton_9_clicked()
+
+void project_window_2::on_pushButton_8_clicked()
 {
 
 }
-

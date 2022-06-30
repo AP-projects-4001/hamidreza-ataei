@@ -7,7 +7,7 @@
 #include <QFile>
 #include <QFileDialog>
 
-login::login(QWidget *parent) : QMainWindow(parent) , ui(new Ui::login)
+login::login(QWidget *parent) : QMainWindow(parent), ui(new Ui::login)
 {
     ui->setupUi(this);
 }
@@ -34,7 +34,7 @@ void login::on_pushButton_3_clicked()
         msgBox->exec();
         return;
     }
-    QFile file("C:/Users/3atae/Desktop/project/accounts_data.txt");
+    QFile file("C:/project/accounts_data.txt");
     file.open(QIODevice::ReadOnly);
     bool chech = 0;
     while (!file.atEnd())
@@ -60,7 +60,7 @@ void login::on_pushButton_3_clicked()
         msgBox->exec();
         return;
     }
-    managment *m = new managment(ui->lineEdit->text());
+    management *m = new management(ui->lineEdit->text());
     m->show();
     QMessageBox *msgBox = new QMessageBox(this);
     msgBox->setWindowTitle("successful log in");

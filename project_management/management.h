@@ -7,13 +7,16 @@
 #include <QMainWindow>
 #include "project_window_1.h"
 #include "overall_status.h"
+#include "project_window_2.h"
+#include "project_window_3.h"
+#include "project_window_4.h"
 
 namespace Ui
 {
-    class managment;
+    class management;
 }
 
-class managment : public QMainWindow
+class management : public QMainWindow
 {
     Q_OBJECT
 
@@ -27,10 +30,16 @@ class managment : public QMainWindow
 
     friend void overall_status::set_all(int check);
 
-public:
-    explicit managment(QString username, QWidget *parent = nullptr);
+    friend void project_window_2::set_users();
 
-    ~managment();
+    friend void project_window_3::set_users();
+
+    friend void project_window_4::set_users();
+
+public:
+    explicit management(QString username, QWidget *parent = nullptr);
+
+    ~management();
 
 private slots:
     void on_pushButton_clicked();
@@ -42,7 +51,7 @@ private slots:
     void on_pushButton_4_clicked();
 
 private:
-    Ui::managment *ui;
+    Ui::management *ui;
 
     static QString username;
 

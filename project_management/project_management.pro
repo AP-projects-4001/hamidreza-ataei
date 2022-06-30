@@ -14,6 +14,9 @@ SOURCES += \
     management.cpp \
     overall_status.cpp \
     project_window_1.cpp \
+    project_window_2.cpp \
+    project_window_3.cpp \
+    project_window_4.cpp \
     sign_up.cpp
 
 HEADERS += \
@@ -25,6 +28,9 @@ HEADERS += \
     management.h \
     overall_status.h \
     project_window_1.h \
+    project_window_2.h \
+    project_window_3.h \
+    project_window_4.h \
     sign_up.h
 
 FORMS += \
@@ -36,6 +42,9 @@ FORMS += \
     management.ui \
     overall_status.ui \
     project_window_1.ui \
+    project_window_2.ui \
+    project_window_3.ui \
+    project_window_4.ui \
     sign_up.ui
 
 # Default rules for deployment.

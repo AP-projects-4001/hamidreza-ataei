@@ -9,10 +9,13 @@
 #include "create_project.h"
 #include <QMessageBox>
 #include "project_window_1.h"
+#include "project_window_2.h"
+#include "project_window_3.h"
+#include "project_window_4.h"
 
-QString managment::username = NULL;
+QString management::username = NULL;
 
-managment::managment(QString username, QWidget *parent) : QMainWindow(parent), ui(new Ui::managment)
+management::management(QString username, QWidget *parent) : QMainWindow(parent), ui(new Ui::management)
 {
     ui->setupUi(this);
     this->username = username;
@@ -21,32 +24,32 @@ managment::managment(QString username, QWidget *parent) : QMainWindow(parent), u
     set_projects();
 }
 
-void managment::set_profile()
+void management::set_profile()
 {
-    QString file_name = "C:/Users/3atae/Desktop/project/" + username + "/image.jpg";
+    QString file_name = "C:/project/" + username + "/image.jpg";
     QFile file(file_name);
     QGraphicsScene *g_s = new QGraphicsScene(this);
     QGraphicsPixmapItem *g_p;
     if (file.open(QIODevice::ReadOnly | QFile::Text))
         g_p = new QGraphicsPixmapItem(QPixmap(file_name));
     else
-        g_p = new QGraphicsPixmapItem(QPixmap("C:/Users/3atae/Desktop/project/image.jpg"));
+        g_p = new QGraphicsPixmapItem(QPixmap("C:/project/image.jpg"));
     file.close();
     g_s->removeItem(g_p);
     g_s->addItem(g_p);
     ui->graphicsView->setScene(g_s);
 }
 
-void managment::set_name()
+void management::set_name()
 {
     ui->label->setText("welcome  " + username);
     ui->label->setAlignment(Qt::AlignCenter);
 }
 
-void managment::set_projects()
+void management::set_projects()
 {
     ui->listWidget->clear();
-    QFile file("C:/Users/3atae/Desktop/project/" + username + "/projects.txt");
+    QFile file("C:/project/" + username + "/projects.txt");
     file.open(QIODevice::ReadOnly);
     while (!file.atEnd())
     {
@@ -60,26 +63,26 @@ void managment::set_projects()
     file.close();
 }
 
-managment::~managment()
+management::~management()
 {
     delete ui;
 }
 
-void managment::on_pushButton_clicked()
+void management::on_pushButton_clicked()
 {
     change_photo *c_p = new change_photo(this);
     c_p->exec();
     set_profile();
 }
 
-void managment::on_pushButton_2_clicked()
+void management::on_pushButton_2_clicked()
 {
     change_information *c_i = new change_information(this);
     c_i->exec();
     set_name();
 }
 
-void managment::on_pushButton_3_clicked()
+void management::on_pushButton_3_clicked()
 {
     create_project *c_p = new create_project(this);
     c_p->exec();
@@ -87,7 +90,7 @@ void managment::on_pushButton_3_clicked()
 }
 
 
-void managment::on_pushButton_4_clicked()
+void management::on_pushButton_4_clicked()
 {
     if (ui->lineEdit->text() == "")
     {
@@ -98,7 +101,7 @@ void managment::on_pushButton_4_clicked()
         msgBox->exec();
         return;
     }
-    QFile file("C:/Users/3atae/Desktop/project/" + username + "/projects.txt");
+    QFile file("C:/project/" + username + "/projects.txt");
     file.open(QIODevice::ReadOnly);
     bool check = 0;
     int access_level;
@@ -127,6 +130,24 @@ void managment::on_pushButton_4_clicked()
     {
         this->setEnabled(false);
         project_window_1 *p_w = new project_window_1(ui->lineEdit->text(), this);
+        p_w->show();
+    }
+    else if (access_level == 2)
+    {
+        this->setEnabled(false);
+        project_window_2 *p_w = new project_window_2(ui->lineEdit->text(), this);
+        p_w->show();
+    }
+    else if (access_level == 3)
+    {
+        this->setEnabled(false);
+        project_window_3 *p_w = new project_window_3(ui->lineEdit->text(), this);
+        p_w->show();
+    }
+    else if (access_level == 4)
+    {
+        this->setEnabled(false);
+        project_window_4 *p_w = new project_window_4(ui->lineEdit->text(), this);
         p_w->show();
     }
 }

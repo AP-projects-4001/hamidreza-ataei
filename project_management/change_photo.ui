@@ -85,6 +85,9 @@ background-color: rgb(50, 50, 50);</string>
      <height>213</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>preview</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
    </property>
@@ -119,6 +122,9 @@ background-color: rgb(50, 50, 50);color: rgb(171, 171, 171);</string>
    </property>
    <property name="text">
     <string>load...</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
    </property>
   </widget>
  </widget>

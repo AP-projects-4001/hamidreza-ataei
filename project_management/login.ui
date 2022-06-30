@@ -267,8 +267,14 @@ background-color: rgb(50, 50, 50);</string>
     <property name="mouseTracking">
      <bool>false</bool>
     </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Log In&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>log in</string>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -279,6 +285,9 @@ background-color: rgb(50, 50, 50);</string>
     </property>
     <property name="text">
      <string>log in</string>
+    </property>
+    <property name="shortcut">
+     <string>Return</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
