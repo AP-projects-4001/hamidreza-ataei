@@ -4,9 +4,11 @@
 #include "change_photo.h"
 #include "change_information.h"
 #include "create_project.h"
+#include "add_member.h"
 #include <QMainWindow>
 #include "project_window_1.h"
 #include "overall_status.h"
+#include "assign_task.h"
 #include "project_window_2.h"
 #include "project_window_3.h"
 #include "project_window_4.h"
@@ -26,9 +28,13 @@ class management : public QMainWindow
 
     friend void create_project::on_buttonBox_accepted();
 
+    friend void add_member::on_buttonBox_accepted();
+
     friend void project_window_1::set_users();
 
     friend void overall_status::set_all(int check);
+
+    friend void assign_task::on_buttonBox_accepted();
 
     friend void project_window_2::set_users();
 

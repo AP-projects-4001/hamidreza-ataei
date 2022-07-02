@@ -5,6 +5,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 
 SOURCES += \
+    add_member.cpp \
+    assign_task.cpp \
     change_information.cpp \
     change_photo.cpp \
     create_project.cpp \
@@ -20,6 +22,8 @@ SOURCES += \
     sign_up.cpp
 
 HEADERS += \
+    add_member.h \
+    assign_task.h \
     change_information.h \
     change_photo.h \
     create_project.h \
@@ -34,6 +38,8 @@ HEADERS += \
     sign_up.h
 
 FORMS += \
+    add_member.ui \
+    assign_task.ui \
     change_information.ui \
     change_photo.ui \
     create_project.ui \

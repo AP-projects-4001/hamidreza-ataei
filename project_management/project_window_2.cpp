@@ -3,6 +3,7 @@
 #include <QFile>
 #include "management.h"
 #include "overall_status.h"
+#include "assign_task.h"
 
 QString project_window_2::project_name = NULL;
 
@@ -52,7 +53,8 @@ void project_window_2::on_pushButton_6_clicked()
 
 void project_window_2::on_pushButton_3_clicked()
 {
-
+    assign_task *a_t = new assign_task(2, this);
+    a_t->exec();
 }
 
 

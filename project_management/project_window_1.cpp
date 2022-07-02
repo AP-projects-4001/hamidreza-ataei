@@ -4,6 +4,8 @@
 #include "management.h"
 #include "overall_status.h"
 #include <QListWidget>
+#include "add_member.h"
+#include "assign_task.h"
 
 QString project_window_1::project_name = NULL;
 
@@ -21,7 +23,8 @@ project_window_1::~project_window_1()
 
 void project_window_1::on_pushButton_clicked()
 {
-
+    add_member *a_m = new add_member(this);
+    a_m->exec();
 }
 
 void project_window_1::set_users()
@@ -64,7 +67,8 @@ void project_window_1::on_pushButton_6_clicked()
 
 void project_window_1::on_pushButton_3_clicked()
 {
-
+    assign_task *a_t = new assign_task(1, this);
+    a_t->exec();
 }
 
 

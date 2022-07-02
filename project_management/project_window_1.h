@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "overall_status.h"
+#include "assign_task.h"
+#include "add_member.h"
 
 namespace Ui
 {
@@ -14,6 +16,10 @@ class project_window_1 : public QMainWindow
     Q_OBJECT
 
     friend void overall_status::set_all(int check);
+
+    friend void assign_task::on_buttonBox_accepted();
+
+    friend void add_member::on_buttonBox_accepted();
 
 public:
     explicit project_window_1(QString project_name, QWidget *parent = nullptr);
