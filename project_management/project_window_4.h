@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "overall_status.h"
+#include "doing_my_task.h"
 
 namespace Ui
 {
@@ -14,6 +15,8 @@ class project_window_4 : public QMainWindow
     Q_OBJECT
 
     friend void overall_status::set_all(int check);
+
+    friend void doing_my_task::on_buttonBox_accepted();
 
 public:
     explicit project_window_4(QString project_name, QWidget *parent = nullptr);

@@ -5,6 +5,7 @@
 #include "add_task.h"
 #include "overall_status.h"
 #include "remove_task.h"
+#include "doing_my_task.h"
 
 QString project_window_3::project_name = NULL;
 
@@ -66,7 +67,8 @@ void project_window_3::on_pushButton_5_clicked()
 
 void project_window_3::on_pushButton_7_clicked()
 {
-
+    doing_my_task *d_m_t = new doing_my_task(3, this);
+    d_m_t->exec();
 }
 
 

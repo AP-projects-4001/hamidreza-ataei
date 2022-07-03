@@ -4,6 +4,8 @@
 #include "management.h"
 #include "overall_status.h"
 #include "assign_task.h"
+#include "doing_my_task.h"
+#include "completed_task.h"
 
 QString project_window_2::project_name = NULL;
 
@@ -60,7 +62,8 @@ void project_window_2::on_pushButton_3_clicked()
 
 void project_window_2::on_pushButton_7_clicked()
 {
-
+    doing_my_task *d_m_t = new doing_my_task(2, this);
+    d_m_t->exec();
 }
 
 
@@ -72,5 +75,6 @@ void project_window_2::on_pushButton_2_clicked()
 
 void project_window_2::on_pushButton_8_clicked()
 {
-
+    completed_task *c_t = new completed_task(2, this);
+    c_t->exec();
 }

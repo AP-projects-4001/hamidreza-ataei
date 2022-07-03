@@ -10,7 +10,9 @@ SOURCES += \
     assign_task.cpp \
     change_information.cpp \
     change_photo.cpp \
+    completed_task.cpp \
     create_project.cpp \
+    doing_my_task.cpp \
     forget_pas.cpp \
     main.cpp \
     login.cpp \
@@ -29,7 +31,9 @@ HEADERS += \
     assign_task.h \
     change_information.h \
     change_photo.h \
+    completed_task.h \
     create_project.h \
+    doing_my_task.h \
     forget_pas.h \
     login.h \
     management.h \
@@ -47,7 +51,9 @@ FORMS += \
     assign_task.ui \
     change_information.ui \
     change_photo.ui \
+    completed_task.ui \
     create_project.ui \
+    doing_my_task.ui \
     forget_pas.ui \
     login.ui \
     management.ui \

@@ -5,7 +5,9 @@
 #include "overall_status.h"
 #include "assign_task.h"
 #include "add_task.h"
+#include "completed_task.h"
 #include "add_member.h"
+#include "doing_my_task.h"
 #include "remove_task.h"
 
 namespace Ui
@@ -23,7 +25,11 @@ class project_window_1 : public QMainWindow
 
     friend void add_task::on_buttonBox_accepted();
 
+    friend void completed_task::on_buttonBox_accepted();
+
     friend void add_member::on_buttonBox_accepted();
+
+    friend void doing_my_task::on_buttonBox_accepted();
 
     friend void remove_task::on_buttonBox_accepted();
 

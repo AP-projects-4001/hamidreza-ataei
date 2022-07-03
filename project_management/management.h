@@ -14,6 +14,8 @@
 #include "project_window_3.h"
 #include "project_window_4.h"
 #include "remove_task.h"
+#include "doing_my_task.h"
+#include "completed_task.h"
 
 namespace Ui
 {
@@ -47,6 +49,10 @@ class management : public QMainWindow
     friend void project_window_4::set_users();
 
     friend void remove_task::on_buttonBox_accepted();
+
+    friend void doing_my_task::on_buttonBox_accepted();
+
+    friend void completed_task::on_buttonBox_accepted();
 
 public:
     explicit management(QString username, QWidget *parent = nullptr);

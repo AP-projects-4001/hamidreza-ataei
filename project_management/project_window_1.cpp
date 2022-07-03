@@ -4,10 +4,12 @@
 #include "management.h"
 #include "overall_status.h"
 #include <QListWidget>
+#include "completed_task.h"
 #include "add_member.h"
 #include "assign_task.h"
 #include "add_task.h"
 #include "remove_task.h"
+#include "doing_my_task.h"
 
 QString project_window_1::project_name = NULL;
 
@@ -83,7 +85,8 @@ void project_window_1::on_pushButton_5_clicked()
 
 void project_window_1::on_pushButton_8_clicked()
 {
-
+    doing_my_task *d_m_t = new doing_my_task(1, this);
+    d_m_t->exec();
 }
 
 
@@ -94,6 +97,7 @@ void project_window_1::on_pushButton_2_clicked()
 
 void project_window_1::on_pushButton_9_clicked()
 {
-
+    completed_task *c_t = new completed_task(1, this);
+    c_t->exec();
 }
 
