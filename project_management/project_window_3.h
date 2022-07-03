@@ -2,7 +2,9 @@
 #define PROJECT_WINDOW_3_H
 
 #include <QMainWindow>
+#include "add_task.h"
 #include "overall_status.h"
+#include "remove_task.h"
 
 namespace Ui
 {
@@ -13,7 +15,11 @@ class project_window_3 : public QMainWindow
 {
     Q_OBJECT
 
+    friend void add_task::on_buttonBox_accepted();
+
     friend void overall_status::set_all(int check);
+
+    friend void remove_task::on_buttonBox_accepted();
 
 public:
     explicit project_window_3(QString project_name, QWidget *parent = nullptr);

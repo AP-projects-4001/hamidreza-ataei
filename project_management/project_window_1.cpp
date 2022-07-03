@@ -6,6 +6,8 @@
 #include <QListWidget>
 #include "add_member.h"
 #include "assign_task.h"
+#include "add_task.h"
+#include "remove_task.h"
 
 QString project_window_1::project_name = NULL;
 
@@ -54,7 +56,8 @@ void project_window_1::set_users()
 
 void project_window_1::on_pushButton_4_clicked()
 {
-
+    add_task *a_t = new add_task(this);
+    a_t->exec();
 }
 
 
@@ -74,7 +77,8 @@ void project_window_1::on_pushButton_3_clicked()
 
 void project_window_1::on_pushButton_5_clicked()
 {
-
+    remove_task *r_t = new remove_task(1, this);
+    r_t->exec();
 }
 
 void project_window_1::on_pushButton_8_clicked()

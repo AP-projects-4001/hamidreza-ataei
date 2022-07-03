@@ -2,7 +2,9 @@
 #include "ui_project_window_3.h"
 #include <QFile>
 #include "management.h"
+#include "add_task.h"
 #include "overall_status.h"
+#include "remove_task.h"
 
 QString project_window_3::project_name = NULL;
 
@@ -45,7 +47,8 @@ void project_window_3::set_users()
 
 void project_window_3::on_pushButton_4_clicked()
 {
-
+    add_task *a_t = new add_task(this);
+    a_t->exec();
 }
 
 
@@ -57,7 +60,8 @@ void project_window_3::on_pushButton_6_clicked()
 
 void project_window_3::on_pushButton_5_clicked()
 {
-
+    remove_task *r_t = new remove_task(3, this);
+    r_t->exec();
 }
 
 void project_window_3::on_pushButton_7_clicked()

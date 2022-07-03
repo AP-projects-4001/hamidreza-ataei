@@ -6,6 +6,7 @@ CONFIG += c++11
 
 SOURCES += \
     add_member.cpp \
+    add_task.cpp \
     assign_task.cpp \
     change_information.cpp \
     change_photo.cpp \
@@ -19,10 +20,12 @@ SOURCES += \
     project_window_2.cpp \
     project_window_3.cpp \
     project_window_4.cpp \
+    remove_task.cpp \
     sign_up.cpp
 
 HEADERS += \
     add_member.h \
+    add_task.h \
     assign_task.h \
     change_information.h \
     change_photo.h \
@@ -35,10 +38,12 @@ HEADERS += \
     project_window_2.h \
     project_window_3.h \
     project_window_4.h \
+    remove_task.h \
     sign_up.h
 
 FORMS += \
     add_member.ui \
+    add_task.ui \
     assign_task.ui \
     change_information.ui \
     change_photo.ui \
@@ -51,6 +56,7 @@ FORMS += \
     project_window_2.ui \
     project_window_3.ui \
     project_window_4.ui \
+    remove_task.ui \
     sign_up.ui
 
 # Default rules for deployment.

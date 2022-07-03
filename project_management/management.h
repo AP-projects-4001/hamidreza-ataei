@@ -7,11 +7,13 @@
 #include "add_member.h"
 #include <QMainWindow>
 #include "project_window_1.h"
+#include "add_task.h"
 #include "overall_status.h"
 #include "assign_task.h"
 #include "project_window_2.h"
 #include "project_window_3.h"
 #include "project_window_4.h"
+#include "remove_task.h"
 
 namespace Ui
 {
@@ -32,6 +34,8 @@ class management : public QMainWindow
 
     friend void project_window_1::set_users();
 
+    friend void add_task::on_buttonBox_accepted();
+
     friend void overall_status::set_all(int check);
 
     friend void assign_task::on_buttonBox_accepted();
@@ -41,6 +45,8 @@ class management : public QMainWindow
     friend void project_window_3::set_users();
 
     friend void project_window_4::set_users();
+
+    friend void remove_task::on_buttonBox_accepted();
 
 public:
     explicit management(QString username, QWidget *parent = nullptr);
