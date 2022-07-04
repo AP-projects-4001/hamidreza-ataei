@@ -17,12 +17,14 @@ SOURCES += \
     main.cpp \
     login.cpp \
     management.cpp \
+    message.cpp \
     overall_status.cpp \
     project_window_1.cpp \
     project_window_2.cpp \
     project_window_3.cpp \
     project_window_4.cpp \
     remove_task.cpp \
+    select_user.cpp \
     sign_up.cpp
 
 HEADERS += \
@@ -37,12 +39,14 @@ HEADERS += \
     forget_pas.h \
     login.h \
     management.h \
+    message.h \
     overall_status.h \
     project_window_1.h \
     project_window_2.h \
     project_window_3.h \
     project_window_4.h \
     remove_task.h \
+    select_user.h \
     sign_up.h
 
 FORMS += \
@@ -57,15 +61,19 @@ FORMS += \
     forget_pas.ui \
     login.ui \
     management.ui \
+    message.ui \
     overall_status.ui \
     project_window_1.ui \
     project_window_2.ui \
     project_window_3.ui \
     project_window_4.ui \
     remove_task.ui \
+    select_user.ui \
     sign_up.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES +=

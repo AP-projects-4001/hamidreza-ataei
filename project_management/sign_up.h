@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class sign_up;
+namespace Ui
+{
+    class sign_up;
 }
 
 class sign_up : public QDialog
@@ -13,6 +14,7 @@ class sign_up : public QDialog
 
 public:
     explicit sign_up(QWidget *parent = nullptr);
+
     ~sign_up();
 
 private slots:

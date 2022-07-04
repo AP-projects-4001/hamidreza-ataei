@@ -10,6 +10,7 @@
 #include "add_task.h"
 #include "remove_task.h"
 #include "doing_my_task.h"
+#include "select_user.h"
 
 QString project_window_1::project_name = NULL;
 
@@ -92,7 +93,8 @@ void project_window_1::on_pushButton_8_clicked()
 
 void project_window_1::on_pushButton_2_clicked()
 {
-
+    select_user *s_u = new select_user(1, this);
+    s_u->exec();
 }
 
 void project_window_1::on_pushButton_9_clicked()

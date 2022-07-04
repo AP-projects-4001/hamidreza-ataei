@@ -6,6 +6,8 @@
 #include "overall_status.h"
 #include "assign_task.h"
 #include "doing_my_task.h"
+#include "select_user.h"
+#include "message.h"
 #include "completed_task.h"
 
 namespace Ui
@@ -24,6 +26,12 @@ class project_window_2 : public QMainWindow
     friend void assign_task::on_buttonBox_accepted();
 
     friend void doing_my_task::on_buttonBox_accepted();
+
+    friend void select_user::on_buttonBox_accepted();
+
+    friend void message::show_message();
+
+    friend void message::on_pushButton_4_clicked();
 
     friend void completed_task::on_buttonBox_accepted();
 

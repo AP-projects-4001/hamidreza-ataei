@@ -2,6 +2,7 @@
 #define CREATE_PROJECT_H
 
 #include <QDialog>
+#include "add_member.h"
 
 namespace Ui
 {
@@ -11,6 +12,8 @@ namespace Ui
 class create_project : public QDialog
 {
     Q_OBJECT
+
+    friend void add_member::on_buttonBox_accepted();
 
 public:
     explicit create_project(QWidget *parent = nullptr);

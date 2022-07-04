@@ -5,6 +5,7 @@
 #include "overall_status.h"
 #include "assign_task.h"
 #include "doing_my_task.h"
+#include "select_user.h"
 #include "completed_task.h"
 
 QString project_window_2::project_name = NULL;
@@ -69,7 +70,8 @@ void project_window_2::on_pushButton_7_clicked()
 
 void project_window_2::on_pushButton_2_clicked()
 {
-
+    select_user *s_u = new select_user(2, this);
+    s_u->exec();
 }
 
 

@@ -6,6 +6,8 @@
 #include "overall_status.h"
 #include "remove_task.h"
 #include "doing_my_task.h"
+#include "select_user.h"
+#include "message.h"
 
 namespace Ui
 {
@@ -23,6 +25,12 @@ class project_window_3 : public QMainWindow
     friend void remove_task::on_buttonBox_accepted();
 
     friend void doing_my_task::on_buttonBox_accepted();
+
+    friend void select_user::on_buttonBox_accepted();
+
+    friend void message::show_message();
+
+    friend void message::on_pushButton_4_clicked();
 
 public:
     explicit project_window_3(QString project_name, QWidget *parent = nullptr);

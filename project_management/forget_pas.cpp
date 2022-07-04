@@ -24,7 +24,7 @@ void forget_pas::on_buttonBox_accepted()
         msgBox->exec();
         return;
     }
-    QFile file("C:/Users/3atae/Desktop/project/accounts_data.txt");
+    QFile file("C:/project/accounts_data.txt");
     file.open(QIODevice::ReadOnly);
     bool chech = 0;
     while (!file.atEnd())
@@ -51,7 +51,7 @@ void forget_pas::on_buttonBox_accepted()
         return;
     }
     file.open(QIODevice::ReadOnly);
-    QFile file_2("C:/Users/3atae/Desktop/project/temp.txt");
+    QFile file_2("C:/project/temp.txt");
     file_2.open(QIODevice::WriteOnly);
     while (!file.atEnd())
     {
@@ -72,7 +72,7 @@ void forget_pas::on_buttonBox_accepted()
     file_2.close();
     file.close();
     file.remove();
-    file_2.rename("C:/Users/3atae/Desktop/project/accounts_data.txt");
+    file_2.rename("C:/project/accounts_data.txt");
     QMessageBox *msgBox = new QMessageBox(this);
     msgBox->setWindowTitle("successful change password");
     msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");

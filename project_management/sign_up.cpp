@@ -25,7 +25,7 @@ void sign_up::on_buttonBox_accepted()
         msgBox->exec();
         return;
     }
-    QFile file("C:/Users/3atae/Desktop/project/accounts_data.txt");
+    QFile file("C:/project/accounts_data.txt");
     file.open(QIODevice::ReadOnly);
     while (!file.atEnd())
     {
@@ -78,8 +78,8 @@ void sign_up::on_buttonBox_accepted()
     file.write(ui->lineEdit_5->text().toStdString().c_str());
     file.write("\n");
     file.close();
-    QDir().mkdir("C:/Users/3atae/Desktop/project/" + ui->lineEdit_2->text());
-    QFile file_2("C:/Users/3atae/Desktop/project/" + ui->lineEdit_2->text() + "/projects.txt");
+    QDir().mkdir("C:/project/" + ui->lineEdit_2->text());
+    QFile file_2("C:/project/" + ui->lineEdit_2->text() + "/projects.txt");
     file_2.open(QIODevice::WriteOnly);
     file_2.close();
     QMessageBox *msgBox_2 = new QMessageBox(this);
