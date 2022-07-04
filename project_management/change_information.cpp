@@ -4,9 +4,35 @@
 #include <QMessageBox>
 #include <QFile>
 
-change_information::change_information(QWidget *parent) : QDialog(parent), ui(new Ui::change_information)
+change_information::change_information(QWidget *parent): QDialog(parent), ui(new Ui::change_information)
 {
     ui->setupUi(this);
+    if (management::theme == 0)
+    {
+        setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->label->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->label_2->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->label_3->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->label_4->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        ui->lineEdit_2->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        ui->lineEdit_3->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        ui->lineEdit_4->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        ui->buttonBox->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+    }
+    else if (management::theme == 1)
+    {
+        setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->label->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->label_2->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->label_3->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->label_4->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        ui->lineEdit_2->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        ui->lineEdit_3->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        ui->lineEdit_4->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        ui->buttonBox->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+    }
 }
 
 change_information::~change_information()

@@ -1,7 +1,7 @@
 #ifndef PROJECT_WINDOW_2_H
 #define PROJECT_WINDOW_2_H
 
-#include <QMainWindow>
+#include <QDialog>
 #include "add_task.h"
 #include "overall_status.h"
 #include "assign_task.h"
@@ -15,10 +15,9 @@ namespace Ui
     class project_window_2;
 }
 
-class project_window_2 : public QMainWindow
+class project_window_2 : public QDialog
 {
     Q_OBJECT
-
     friend void add_task::on_buttonBox_accepted();
 
     friend void overall_status::set_all(int check);
@@ -38,9 +37,9 @@ class project_window_2 : public QMainWindow
 public:
     explicit project_window_2(QString project_name, QWidget *parent = nullptr);
 
-    ~project_window_2();
-
     void set_users();
+
+    ~project_window_2();
 
 private slots:
     void on_pushButton_6_clicked();

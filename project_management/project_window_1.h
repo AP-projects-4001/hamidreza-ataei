@@ -1,7 +1,7 @@
 #ifndef PROJECT_WINDOW_1_H
 #define PROJECT_WINDOW_1_H
 
-#include <QMainWindow>
+#include <QDialog>
 #include "overall_status.h"
 #include "assign_task.h"
 #include "add_task.h"
@@ -17,7 +17,7 @@ namespace Ui
     class project_window_1;
 }
 
-class project_window_1 : public QMainWindow
+class project_window_1 : public QDialog
 {
     Q_OBJECT
 

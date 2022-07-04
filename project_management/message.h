@@ -1,14 +1,14 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-#include <QMainWindow>
+#include <QDialog>
 
 namespace Ui
 {
     class message;
 }
 
-class message : public QMainWindow
+class message : public QDialog
 {
     Q_OBJECT
 

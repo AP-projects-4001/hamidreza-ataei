@@ -8,11 +8,27 @@
 #include "project_window_3.h"
 #include "project_window_4.h"
 
-message::message(int check, QString name, QWidget *parent) : QMainWindow(parent), ui(new Ui::message)
+message::message(int check, QString name, QWidget *parent): QDialog(parent), ui(new Ui::message)
 {
     ui->setupUi(this);
     this->check = check;
     this->name = name;
+    if (management::theme == 0)
+    {
+        this->setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->listWidget->setStyleSheet("color: rgb(200, 171, 100);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_4->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->label->setStyleSheet("color: rgb(144, 48, 0)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0);");
+    }
+    else if (management::theme == 1)
+    {
+        this->setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->listWidget->setStyleSheet("color: rgb(150, 121, 50);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_4->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->label->setStyleSheet("color: rgb(144, 48, 0);");
+        ui->lineEdit->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255);");
+    }
     ui->label->setText(name);
     show_message();
 }
@@ -238,4 +254,3 @@ void message::on_pushButton_4_clicked()
     ui->lineEdit->clear();
     show_message();
 }
-

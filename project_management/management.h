@@ -65,6 +65,8 @@ class management : public QMainWindow
 public:
     explicit management(QString username, QWidget *parent = nullptr);
 
+    static int theme;
+
     ~management();
 
 private slots:
@@ -75,6 +77,8 @@ private slots:
     void on_pushButton_3_clicked();
 
     void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::management *ui;

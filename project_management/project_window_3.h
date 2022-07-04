@@ -1,7 +1,7 @@
 #ifndef PROJECT_WINDOW_3_H
 #define PROJECT_WINDOW_3_H
 
-#include <QMainWindow>
+#include <QDialog>
 #include "add_task.h"
 #include "overall_status.h"
 #include "remove_task.h"
@@ -14,7 +14,7 @@ namespace Ui
     class project_window_3;
 }
 
-class project_window_3 : public QMainWindow
+class project_window_3 : public QDialog
 {
     Q_OBJECT
 

@@ -9,10 +9,24 @@
 #include <QFile>
 #include "message.h"
 
-select_user::select_user(int check, QWidget *parent) : QDialog(parent), ui(new Ui::select_user)
+select_user::select_user(int check, QWidget *parent): QDialog(parent), ui(new Ui::select_user)
 {
     ui->setupUi(this);
     this->check = check;
+    if (management::theme == 0)
+    {
+        setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        ui->label->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->buttonBox->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+    }
+    else if (management::theme == 1)
+    {
+        setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        ui->label->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->buttonBox->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+    }
 }
 
 select_user::~select_user()
@@ -66,7 +80,7 @@ void select_user::on_buttonBox_accepted()
             return;
         }
         message *m = new message(1, ui->lineEdit->text());
-        m->show();
+        m->exec();
     }
     else if (check == 2)
     {
@@ -103,7 +117,7 @@ void select_user::on_buttonBox_accepted()
             return;
         }
         message *m = new message(2, ui->lineEdit->text());
-        m->show();
+        m->exec();
     }
     else if (check == 3)
     {
@@ -140,7 +154,7 @@ void select_user::on_buttonBox_accepted()
             return;
         }
         message *m = new message(3, ui->lineEdit->text());
-        m->show();
+        m->exec();
     }
     else if (check == 4)
     {
@@ -177,8 +191,7 @@ void select_user::on_buttonBox_accepted()
             return;
         }
         message *m = new message(4, ui->lineEdit->text());
-        m->show();
+        m->exec();
     }
     this->close();
 }
-

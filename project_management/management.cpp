@@ -15,7 +15,9 @@
 
 QString management::username = NULL;
 
-management::management(QString username, QWidget *parent) : QMainWindow(parent), ui(new Ui::management)
+int management::theme = 0;
+
+management::management(QString username, QWidget *parent): QMainWindow(parent), ui(new Ui::management)
 {
     ui->setupUi(this);
     this->username = username;
@@ -26,18 +28,36 @@ management::management(QString username, QWidget *parent) : QMainWindow(parent),
 
 void management::set_profile()
 {
-    QString file_name = "C:/project/" + username + "/image.jpg";
-    QFile file(file_name);
-    QGraphicsScene *g_s = new QGraphicsScene(this);
-    QGraphicsPixmapItem *g_p;
-    if (file.open(QIODevice::ReadOnly | QFile::Text))
-        g_p = new QGraphicsPixmapItem(QPixmap(file_name));
-    else
-        g_p = new QGraphicsPixmapItem(QPixmap("C:/project/image.jpg"));
-    file.close();
-    g_s->removeItem(g_p);
-    g_s->addItem(g_p);
-    ui->graphicsView->setScene(g_s);
+    if (theme == 0)
+    {
+        QString file_name = "C:/project/" + username + "/image.jpg";
+        QFile file(file_name);
+        QGraphicsScene *g_s = new QGraphicsScene(this);
+        QGraphicsPixmapItem *g_p;
+        if (file.open(QIODevice::ReadOnly | QFile::Text))
+            g_p = new QGraphicsPixmapItem(QPixmap(file_name));
+        else
+            g_p = new QGraphicsPixmapItem(QPixmap("C:/project/image_0.jpg"));
+        file.close();
+        g_s->removeItem(g_p);
+        g_s->addItem(g_p);
+        ui->graphicsView->setScene(g_s);
+    }
+    else if (theme == 1)
+    {
+        QString file_name = "C:/project/" + username + "/image.jpg";
+        QFile file(file_name);
+        QGraphicsScene *g_s = new QGraphicsScene(this);
+        QGraphicsPixmapItem *g_p;
+        if (file.open(QIODevice::ReadOnly | QFile::Text))
+            g_p = new QGraphicsPixmapItem(QPixmap(file_name));
+        else
+            g_p = new QGraphicsPixmapItem(QPixmap("C:/project/image_1.jpg"));
+        file.close();
+        g_s->removeItem(g_p);
+        g_s->addItem(g_p);
+        ui->graphicsView->setScene(g_s);
+    }
 }
 
 void management::set_name()
@@ -128,27 +148,57 @@ void management::on_pushButton_4_clicked()
     }
     if (access_level == 1)
     {
-        this->setEnabled(false);
         project_window_1 *p_w = new project_window_1(ui->lineEdit->text(), this);
-        p_w->show();
+        p_w->exec();
     }
     else if (access_level == 2)
     {
-        this->setEnabled(false);
         project_window_2 *p_w = new project_window_2(ui->lineEdit->text(), this);
-        p_w->show();
+        p_w->exec();
     }
     else if (access_level == 3)
     {
-        this->setEnabled(false);
         project_window_3 *p_w = new project_window_3(ui->lineEdit->text(), this);
-        p_w->show();
+        p_w->exec();
     }
     else if (access_level == 4)
     {
-        this->setEnabled(false);
         project_window_4 *p_w = new project_window_4(ui->lineEdit->text(), this);
-        p_w->show();
+        p_w->exec();
     }
+}
+
+
+void management::on_pushButton_5_clicked()
+{
+    if (theme == 0)
+    {
+        theme = 1;
+        ui->pushButton->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_2->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_3->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_4->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_5->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->listWidget->setStyleSheet("color: rgb(150, 121, 50);\nbackground-color: rgb(205, 205, 205)");
+        ui->label->setStyleSheet("color: rgb(144, 48, 0)");
+        ui->pushButton_5->setText("🌙");
+    }
+    else if (theme == 1)
+    {
+        theme = 0;
+        ui->pushButton->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_2->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_3->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_4->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_5->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->listWidget->setStyleSheet("color: rgb(200, 171, 100);\nbackground-color: rgb(50, 50, 50)");
+        ui->label->setStyleSheet("color: rgb(144, 48, 0)");
+        ui->pushButton_5->setText("🔆");
+    }
+    set_profile();
 }
 

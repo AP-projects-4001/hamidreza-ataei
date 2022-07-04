@@ -10,10 +10,28 @@
 
 QString project_window_2::project_name = NULL;
 
-project_window_2::project_window_2(QString project_name, QWidget *parent) : QMainWindow(parent), ui(new Ui::project_window_2)
+project_window_2::project_window_2(QString project_name, QWidget *parent): QDialog(parent), ui(new Ui::project_window_2)
 {
     ui->setupUi(this);
     this->project_name = project_name;
+    if (management::theme == 0)
+    {
+        this->setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->listWidget->setStyleSheet("color: rgb(200, 171, 100);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_2->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_3->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_6->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton_8->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+    }
+    else if (management::theme == 1)
+    {
+        this->setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->listWidget->setStyleSheet("color: rgb(150, 121, 50);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_2->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_3->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_6->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton_8->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+    }
     set_users();
 }
 

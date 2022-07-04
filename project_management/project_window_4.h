@@ -1,7 +1,7 @@
 #ifndef PROJECT_WINDOW_4_H
 #define PROJECT_WINDOW_4_H
 
-#include <QMainWindow>
+#include <QDialog>
 #include "overall_status.h"
 #include "doing_my_task.h"
 #include "select_user.h"
@@ -12,7 +12,7 @@ namespace Ui
     class project_window_4;
 }
 
-class project_window_4 : public QMainWindow
+class project_window_4 : public QDialog
 {
     Q_OBJECT
 

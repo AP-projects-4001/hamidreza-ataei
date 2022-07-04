@@ -8,10 +8,26 @@
 
 QString completed_task::address = "";
 
-completed_task::completed_task(int check, QWidget *parent) : QDialog(parent), ui(new Ui::completed_task)
+completed_task::completed_task(int check, QWidget *parent): QDialog(parent), ui(new Ui::completed_task)
 {
     ui->setupUi(this);
     this->check = check;
+    if (management::theme == 0)
+    {
+        setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(126, 126, 126);\nselection-color: rgb(255, 255, 255);\nselection-background-color: rgb(0, 0, 0);\ncolor: rgb(0, 0, 0)");
+        ui->label->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->buttonBox->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+    }
+    else if (management::theme == 1)
+    {
+        setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->lineEdit->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255)");
+        ui->label->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->buttonBox->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+    }
 }
 
 completed_task::~completed_task()

@@ -7,7 +7,7 @@
 #include <QFile>
 #include <QFileDialog>
 
-login::login(QWidget *parent) : QMainWindow(parent), ui(new Ui::login)
+login::login(QWidget *parent): QMainWindow(parent), ui(new Ui::login)
 {
     ui->setupUi(this);
 }

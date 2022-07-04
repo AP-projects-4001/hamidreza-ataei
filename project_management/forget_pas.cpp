@@ -3,7 +3,7 @@
 #include <QMessageBox>
 #include <QFile>
 
-forget_pas::forget_pas(QWidget *parent) : QDialog(parent), ui(new Ui::forget_pas)
+forget_pas::forget_pas(QWidget *parent): QDialog(parent), ui(new Ui::forget_pas)
 {
     ui->setupUi(this);
 }

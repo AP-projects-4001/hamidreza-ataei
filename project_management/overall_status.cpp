@@ -8,9 +8,25 @@
 #include "project_window_3.h"
 #include "project_window_4.h"
 
-overall_status::overall_status(int check, QWidget *parent) : QDialog(parent), ui(new Ui::overall_status)
+overall_status::overall_status(int check, QWidget *parent): QDialog(parent), ui(new Ui::overall_status)
 {
     ui->setupUi(this);
+    if (management::theme == 0)
+    {
+        setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->listWidget->setStyleSheet("color: rgb(200, 171, 100);\nbackground-color: rgb(50, 50, 50)");
+        ui->listWidget_2->setStyleSheet("color: rgb(200, 171, 100);\nbackground-color: rgb(50, 50, 50)");
+        ui->label->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->label_2->setStyleSheet("color: rgb(171, 171, 171)");
+    }
+    else if (management::theme == 1)
+    {
+        setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->listWidget->setStyleSheet("color: rgb(150, 121, 50);\nbackground-color: rgb(205, 205, 205)");
+        ui->listWidget_2->setStyleSheet("color: rgb(150, 121, 50);\nbackground-color: rgb(205, 205, 205)");
+        ui->label->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->label_2->setStyleSheet("color: rgb(84, 84, 84)");
+    }
     set_all(check);
 }
 

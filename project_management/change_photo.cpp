@@ -9,10 +9,24 @@
 QString image_address = NULL;
 QWidget change_photo::*p = nullptr;
 
-change_photo::change_photo(QWidget *parent) : QDialog(parent), ui(new Ui::change_photo)
+change_photo::change_photo(QWidget *parent): QDialog(parent), ui(new Ui::change_photo)
 {
     ui->setupUi(this);
     address = parent;
+    if (management::theme == 0)
+    {
+        setStyleSheet("background-color: rgb(40, 40, 40)");
+        ui->label->setStyleSheet("color: rgb(171, 171, 171)");
+        ui->buttonBox->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+        ui->pushButton->setStyleSheet("color: rgb(171, 171, 171);\nbackground-color: rgb(50, 50, 50)");
+    }
+    else if (management::theme == 1)
+    {
+        setStyleSheet("background-color: rgb(215, 215, 215)");
+        ui->label->setStyleSheet("color: rgb(84, 84, 84)");
+        ui->buttonBox->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+        ui->pushButton->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
+    }
 }
 
 change_photo::~change_photo()
