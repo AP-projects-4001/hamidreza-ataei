@@ -6,6 +6,7 @@
 #include <QFile>
 #include "management.h"
 #include "overall_status.h"
+#include <vector>
 
 worker_overall::worker_overall(QObject *parent): QObject(parent)
 {
@@ -47,8 +48,15 @@ void worker_overall::doWork()
     }
     int read_line_u = 0;
     int read_line_t = 0;
+    std::vector<int> assign_check;
+    std::vector<QString> name_check;
     while (true)
     {
+        mutex.lock();
+        bool abort = _abort;
+        mutex.unlock();
+        if (abort)
+            break;
         QFile file(address_level_1);
         file.open(QIODevice::ReadOnly);
         int line_u = 0;
@@ -65,11 +73,6 @@ void worker_overall::doWork()
                 file.readLine();
             while (!file.atEnd())
             {
-                mutex.lock();
-                bool abort = _abort;
-                mutex.unlock();
-                if (abort)
-                    break;
                 std::string temp = '\n' + file.readLine().toStdString();
                 temp.pop_back();
                 temp = temp + "          .....          access level: " +  file.readLine().toStdString();
@@ -83,11 +86,6 @@ void worker_overall::doWork()
             file.open(QIODevice::ReadOnly);
             while (!file.atEnd())
             {
-                mutex.lock();
-                bool abort = _abort;
-                mutex.unlock();
-                if (abort)
-                    break;
                 std::string temp = '\n' + file.readLine().toStdString();
                 temp.pop_back();
                 temp = temp + "          .....          access level: " +  file.readLine().toStdString();
@@ -97,28 +95,46 @@ void worker_overall::doWork()
         }
         QFile file_2(address_level_2);
         file_2.open(QIODevice::ReadOnly);
-        int line_t = 0;
+        unsigned int line_t = 0;
         while (!file_2.atEnd())
         {
             file_2.readLine();
             line_t++;
         }
         file_2.close();
-        if (line_t > read_line_t)
+        bool equal_check = 0;
+        if (3 * assign_check.size() == line_t)
+        {
+            file_2.open(QIODevice::ReadOnly);
+            int i = 0;
+            while (!file_2.atEnd())
+            {
+                QString temp = file_2.readLine();
+                QString temp_2 = file_2.readLine();
+                if (temp != name_check[i] || temp_2.toInt() != assign_check[i])
+                {
+                    equal_check = 0;
+                    break;
+                }
+                equal_check = 1;
+                file_2.readLine();
+                i++;
+            }
+            file_2.close();
+        }
+        if (equal_check == 1)
         {
             file_2.open(QIODevice::ReadOnly);
             for (int counter = 0; counter < read_line_t; counter++)
                 file_2.readLine();
             while (!file_2.atEnd())
             {
-                mutex.lock();
-                bool abort = _abort;
-                mutex.unlock();
-                if (abort)
-                    break;
-                std::string temp = '\n' + file_2.readLine().toStdString();
+                std::string temp = file_2.readLine().toStdString();
+                name_check.push_back(QString::fromStdString(temp));
+                temp = '\n' + temp;
                 temp.pop_back();
                 int temp_2 = file_2.readLine().toInt();
+                assign_check.push_back(temp_2);
                 if (temp_2 == 0)
                     temp = temp + "          .....          not assigned";
                 else if (temp_2 == 1)
@@ -130,20 +146,20 @@ void worker_overall::doWork()
             }
             file_2.close();
         }
-        else if (read_line_t > line_t)
+        else
         {
+            name_check.clear();
+            assign_check.clear();
             emit clear_tasks();
             file_2.open(QIODevice::ReadOnly);
             while (!file_2.atEnd())
             {
-                mutex.lock();
-                bool abort = _abort;
-                mutex.unlock();
-                if (abort)
-                    break;
-                std::string temp = '\n' + file_2.readLine().toStdString();
+                std::string temp = file_2.readLine().toStdString();
+                name_check.push_back(QString::fromStdString(temp));
+                temp = '\n' + temp;
                 temp.pop_back();
                 int temp_2 = file_2.readLine().toInt();
+                assign_check.push_back(temp_2);
                 if (temp_2 == 0)
                     temp = temp + "          .....          not assigned";
                 else if (temp_2 == 1)
@@ -157,6 +173,9 @@ void worker_overall::doWork()
         }
         read_line_u = line_u;
         read_line_t = line_t;
+        QEventLoop loop;
+        QTimer::singleShot(100, &loop, SLOT(quit()));
+        loop.exec();
     }
     mutex.lock();
     _working = false;

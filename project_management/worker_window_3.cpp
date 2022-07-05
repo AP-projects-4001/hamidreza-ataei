@@ -70,6 +70,9 @@ void worker_window_3::doWork()
             file.close();
         }
         read_line = line;
+        QEventLoop loop;
+        QTimer::singleShot(100, &loop, SLOT(quit()));
+        loop.exec();
     }
     mutex.lock();
     _working = false;

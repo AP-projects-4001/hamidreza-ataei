@@ -90,6 +90,9 @@ void worker_message::doWork()
             file.close();
         }
         line_read = line;
+        QEventLoop loop;
+        QTimer::singleShot(100, &loop, SLOT(quit()));
+        loop.exec();
     }
     mutex.lock();
     _working = false;
