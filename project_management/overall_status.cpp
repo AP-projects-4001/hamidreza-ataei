@@ -8,6 +8,8 @@
 #include "project_window_3.h"
 #include "project_window_4.h"
 
+int overall_status::check = 1;
+
 overall_status::overall_status(int check, QWidget *parent): QDialog(parent), ui(new Ui::overall_status)
 {
     ui->setupUi(this);
@@ -27,7 +29,19 @@ overall_status::overall_status(int check, QWidget *parent): QDialog(parent), ui(
         ui->label->setStyleSheet("color: rgb(84, 84, 84)");
         ui->label_2->setStyleSheet("color: rgb(84, 84, 84)");
     }
-    set_all(check);
+    this->check = check;
+    thread = new QThread();
+    worker = new worker_overall();
+    worker->moveToThread(thread);
+    connect(worker, SIGNAL(valueChanged_u(QString)), this, SLOT(set_users(QString)));
+    connect(worker, SIGNAL(valueChanged_t(QString)), this, SLOT(set_tasks(QString)));
+    connect(worker, SIGNAL(clear_users()), this, SLOT(clear_users()));
+    connect(worker, SIGNAL(clear_tasks()), this, SLOT(clear_tasks()));
+    connect(worker, SIGNAL(workRequested()), thread, SLOT(start()));
+    connect(thread, SIGNAL(started()), worker, SLOT(doWork()));
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()), Qt::DirectConnection);
+    thread->wait();
+    worker->requestWork();
 }
 
 overall_status::~overall_status()
@@ -35,154 +49,28 @@ overall_status::~overall_status()
     delete ui;
 }
 
-void overall_status::set_all(int check)
+void overall_status::set_users(QString u_name)
 {
-    if (check == 1)
-    {
-        QFile file("C:/project/" + management::username + '/' + project_window_1::project_name + "/all_users.txt");
-        file.open(QIODevice::ReadOnly);
-        while (!file.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file.readLine().toStdString();
-            temp.pop_back();
-            temp = temp + "          .....          access level: " +  file.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget->addItem(widget);
+    QListWidgetItem *widget = new QListWidgetItem();
+    widget->setText(u_name);
+    widget->setTextAlignment(Qt::AlignCenter);
+    ui->listWidget->addItem(widget);
+}
 
-        }
-        file.close();
-        QFile file_2("C:/project/" + management::username + '/' + project_window_1::project_name + "/all_tasks.txt");
-        file_2.open(QIODevice::ReadOnly);
-        while (!file_2.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file_2.readLine().toStdString();
-            temp.pop_back();
-            int temp_2 = file_2.readLine().toInt();
-            if (temp_2 == 0)
-                temp = temp + "          .....          not assigned";
-            else if (temp_2 == 1)
-                temp = temp + "          .....          assigned to ";
-            else
-                temp = temp + "          .....          completed by ";
-            temp = temp + file_2.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget_2->addItem(widget);
-        }
-        file_2.close();
-    }
-    else if (check == 2)
-    {
-        QFile file("C:/project/" + management::username + '/' + project_window_2::project_name + "/all_users.txt");
-        file.open(QIODevice::ReadOnly);
-        while (!file.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file.readLine().toStdString();
-            temp.pop_back();
-            temp = temp + "          .....          access level: " +  file.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget->addItem(widget);
+void overall_status::clear_users()
+{
+    ui->listWidget->clear();
+}
 
-        }
-        file.close();
-        QFile file_2("C:/project/" + management::username + '/' + project_window_2::project_name + "/all_tasks.txt");
-        file_2.open(QIODevice::ReadOnly);
-        while (!file_2.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file_2.readLine().toStdString();
-            temp.pop_back();
-            int temp_2 = file_2.readLine().toInt();
-            if (temp_2 == 0)
-                temp = temp + "          .....          not assigned";
-            else if (temp_2 == 1)
-                temp = temp + "          .....          assigned to ";
-            else
-                temp = temp + "          .....          completed by ";
-            temp = temp + file_2.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget_2->addItem(widget);
-        }
-        file_2.close();
-    }
-    else if (check == 3)
-    {
-        QFile file("C:/project/" + management::username + '/' + project_window_3::project_name + "/all_users.txt");
-        file.open(QIODevice::ReadOnly);
-        while (!file.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file.readLine().toStdString();
-            temp.pop_back();
-            temp = temp + "          .....          access level: " +  file.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget->addItem(widget);
+void overall_status::set_tasks(QString t_name)
+{
+    QListWidgetItem *widget = new QListWidgetItem();
+    widget->setText(t_name);
+    widget->setTextAlignment(Qt::AlignCenter);
+    ui->listWidget_2->addItem(widget);
+}
 
-        }
-        file.close();
-        QFile file_2("C:/project/" + management::username + '/' + project_window_3::project_name + "/all_tasks.txt");
-        file_2.open(QIODevice::ReadOnly);
-        while (!file_2.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file_2.readLine().toStdString();
-            temp.pop_back();
-            int temp_2 = file_2.readLine().toInt();
-            if (temp_2 == 0)
-                temp = temp + "          .....          not assigned";
-            else if (temp_2 == 1)
-                temp = temp + "          .....          assigned to ";
-            else
-                temp = temp + "          .....          completed by ";
-            temp = temp + file_2.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget_2->addItem(widget);
-        }
-        file_2.close();
-    }
-    else if (check == 4)
-    {
-        QFile file("C:/project/" + management::username + '/' + project_window_4::project_name + "/all_users.txt");
-        file.open(QIODevice::ReadOnly);
-        while (!file.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file.readLine().toStdString();
-            temp.pop_back();
-            temp = temp + "          .....          access level: " +  file.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget->addItem(widget);
-
-        }
-        file.close();
-        QFile file_2("C:/project/" + management::username + '/' + project_window_4::project_name + "/all_tasks.txt");
-        file_2.open(QIODevice::ReadOnly);
-        while (!file_2.atEnd())
-        {
-            QListWidgetItem *widget = new QListWidgetItem();
-            std::string temp = '\n' + file_2.readLine().toStdString();
-            temp.pop_back();
-            int temp_2 = file_2.readLine().toInt();
-            if (temp_2 == 0)
-                temp = temp + "          .....          not assigned";
-            else if (temp_2 == 1)
-                temp = temp + "          .....          assigned to ";
-            else
-                temp = temp + "          .....          completed by ";
-            temp = temp + file_2.readLine().toStdString();
-            widget->setText(temp.c_str());
-            widget->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget_2->addItem(widget);
-        }
-        file_2.close();
-    }
+void overall_status::clear_tasks()
+{
+    ui->listWidget_2->clear();
 }

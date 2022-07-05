@@ -133,14 +133,14 @@ background-color: rgb(50, 50, 50);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>edit user info</string>
+     <string>my info</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(171, 171, 171);
 background-color: rgb(50, 50, 50);</string>
     </property>
     <property name="text">
-     <string>edit user info</string>
+     <string>my info</string>
     </property>
     <property name="flat">
      <bool>false</bool>

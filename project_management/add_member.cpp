@@ -49,7 +49,10 @@ void add_member::on_buttonBox_accepted()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("fields are required ✘");
         msgBox->exec();
         return;
@@ -75,7 +78,10 @@ void add_member::on_buttonBox_accepted()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("username is wrong ✘");
         msgBox->exec();
         return;
@@ -89,7 +95,10 @@ void add_member::on_buttonBox_accepted()
         {
             QMessageBox *msgBox = new QMessageBox(this);
             msgBox->setWindowTitle("Error");
-            msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            if (management::theme == 0)
+                msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            else if (management::theme == 1)
+                msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
             msgBox->setInformativeText("this user is in the project ✘");
             msgBox->exec();
             return;
@@ -105,7 +114,10 @@ void add_member::on_buttonBox_accepted()
         {
             QMessageBox *msgBox = new QMessageBox(this);
             msgBox->setWindowTitle("Error");
-            msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            if (management::theme == 0)
+                msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            else if (management::theme == 1)
+                msgBox->setStyleSheet("QLabel{min-width: 300px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
             msgBox->setInformativeText("you can't add this user ✘");
             msgBox->exec();
             return;
@@ -200,7 +212,10 @@ void add_member::on_buttonBox_accepted()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("fields are required ✘");
         msgBox->exec();
         return;
@@ -215,8 +230,11 @@ void add_member::on_buttonBox_accepted()
 void add_member::on_pushButton_clicked()
 {
     QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle("Error");
-    msgBox->setStyleSheet("QLabel{min-width: 350px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+    msgBox->setWindowTitle("help");
+    if (management::theme == 0)
+        msgBox->setStyleSheet("QLabel{min-width: 350px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+    else if (management::theme == 1)
+        msgBox->setStyleSheet("QLabel{min-width: 350px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
     msgBox->setInformativeText("level 4:  can see status\n\nlevel 3:  level 4 + add or subtrack tasks\n\nlevel 2:  level 4 + assign tasks\n\nlevel 1:  ability to make any changes");
     msgBox->exec();
     return;

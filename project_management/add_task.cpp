@@ -35,7 +35,10 @@ void add_task::on_buttonBox_accepted()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("fields are required ✘");
         msgBox->exec();
         return;
@@ -49,7 +52,10 @@ void add_task::on_buttonBox_accepted()
         {
             QMessageBox *msgBox = new QMessageBox(this);
             msgBox->setWindowTitle("Error");
-            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            if (management::theme == 0)
+                msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            else if (management::theme == 1)
+                msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
             msgBox->setInformativeText("this task is in the project ✘");
             msgBox->exec();
             return;

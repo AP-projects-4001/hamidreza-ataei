@@ -19,7 +19,6 @@ void forget_pas::on_buttonBox_accepted()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("fields are required ✘");
         msgBox->exec();
         return;

@@ -12,6 +12,7 @@
 #include "project_window_2.h"
 #include "project_window_3.h"
 #include "project_window_4.h"
+#include "my_info.h"
 
 QString management::username = NULL;
 
@@ -21,9 +22,18 @@ management::management(QString username, QWidget *parent): QMainWindow(parent), 
 {
     ui->setupUi(this);
     this->username = username;
+    thread = new QThread();
+    worker = new Worker();
+    worker->moveToThread(thread);
+    connect(worker, SIGNAL(valueChanged(QString)), this, SLOT(set_projects(QString)));
+    connect(worker, SIGNAL(clear()), this, SLOT(clear()));
+    connect(worker, SIGNAL(workRequested()), thread, SLOT(start()));
+    connect(thread, SIGNAL(started()), worker, SLOT(doWork()));
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()), Qt::DirectConnection);
+    thread->wait();
+    worker->requestWork();
     set_profile();
     set_name();
-    set_projects();
 }
 
 void management::set_profile()
@@ -66,21 +76,18 @@ void management::set_name()
     ui->label->setAlignment(Qt::AlignCenter);
 }
 
-void management::set_projects()
+void management::set_projects(QString p_name)
+{
+    QListWidgetItem *widget = new QListWidgetItem();
+    std::string temp = "\n" + p_name.toStdString();
+    widget->setText(temp.c_str());
+    widget->setTextAlignment(Qt::AlignCenter);
+    ui->listWidget->addItem(widget);
+}
+
+void management::clear()
 {
     ui->listWidget->clear();
-    QFile file("C:/project/" + username + "/projects.txt");
-    file.open(QIODevice::ReadOnly);
-    while (!file.atEnd())
-    {
-        QListWidgetItem *widget = new QListWidgetItem();
-        std::string temp = "\n" + file.readLine().toStdString();
-        widget->setText(temp.c_str());
-        widget->setTextAlignment(Qt::AlignCenter);
-        ui->listWidget->addItem(widget);
-        file.readLine();
-    }
-    file.close();
 }
 
 management::~management()
@@ -97,16 +104,14 @@ void management::on_pushButton_clicked()
 
 void management::on_pushButton_2_clicked()
 {
-    change_information *c_i = new change_information(this);
-    c_i->exec();
-    set_name();
+    my_info *m_i = new my_info(this);
+    m_i->exec();
 }
 
 void management::on_pushButton_3_clicked()
 {
     create_project *c_p = new create_project(this);
     c_p->exec();
-    set_projects();
 }
 
 
@@ -116,7 +121,10 @@ void management::on_pushButton_4_clicked()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("field is required ✘");
         msgBox->exec();
         return;
@@ -141,7 +149,10 @@ void management::on_pushButton_4_clicked()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("project name is wrong ✘");
         msgBox->exec();
         return;

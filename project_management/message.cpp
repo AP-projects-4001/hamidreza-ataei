@@ -7,6 +7,13 @@
 #include "project_window_2.h"
 #include "project_window_3.h"
 #include "project_window_4.h"
+#include "worker_message.h"
+
+int message::check = 1;
+
+QString message::name = "";
+
+int scroll = 0;
 
 message::message(int check, QString name, QWidget *parent): QDialog(parent), ui(new Ui::message)
 {
@@ -30,7 +37,16 @@ message::message(int check, QString name, QWidget *parent): QDialog(parent), ui(
         ui->lineEdit->setStyleSheet("background-color: rgb(129, 129, 129);\nselection-color: rgb(0, 0, 0);\nselection-background-color: rgb(255, 255, 255);\ncolor: rgb(255, 255, 255);");
     }
     ui->label->setText(name);
-    show_message();
+    thread = new QThread();
+    worker = new worker_message();
+    worker->moveToThread(thread);
+    connect(worker, SIGNAL(valueChanged(QString)), this, SLOT(show_message(QString)));
+    connect(worker, SIGNAL(clear()), this, SLOT(clear()));
+    connect(worker, SIGNAL(workRequested()), thread, SLOT(start()));
+    connect(thread, SIGNAL(started()), worker, SLOT(doWork()));
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()), Qt::DirectConnection);
+    thread->wait();
+    worker->requestWork();
 }
 
 message::~message()
@@ -38,153 +54,14 @@ message::~message()
     delete ui;
 }
 
-void message::show_message()
+void message::show_message(QString mess)
+{
+    ui->listWidget->addItem(mess);
+}
+
+void message::clear()
 {
     ui->listWidget->clear();
-    if (check == 1)
-    {
-        int counter = 0;
-        QFile file("C:/project/" + management::username + '/' + project_window_1::project_name + "/message/" + name + ".txt");
-        file.open(QIODevice::ReadOnly);
-        int check_2 = 3;
-        while (!file.atEnd())
-        {
-            QString temp = file.readLine();
-            std::string temp_2 = temp.toStdString();
-            temp_2.pop_back();
-            if (counter % 2 == 0)
-            {
-                if (temp == "0\n")
-                {
-                    if (check_2 != 0)
-                    {
-                        ui->listWidget->addItem("\nme:");
-                        check_2 = 0;
-                    }
-                }
-                else if (temp == "1\n")
-                {
-                    if (check_2 != 1)
-                    {
-                        ui->listWidget->addItem('\n' + name + ":");
-                        check_2 = 1;
-                    }
-                }
-            }
-            else
-                ui->listWidget->addItem(temp_2.c_str());
-            counter++;
-        }
-        file.close();
-    }
-    else if (check == 2)
-    {
-        int counter = 0;
-        QFile file("C:/project/" + management::username + '/' + project_window_2::project_name + "/message/" + name + ".txt");
-        file.open(QIODevice::ReadOnly);
-        int check_2 = 3;
-        while (!file.atEnd())
-        {
-            QString temp = file.readLine();
-            std::string temp_2 = temp.toStdString();
-            temp_2.pop_back();
-            if (counter % 2 == 0)
-            {
-                if (temp == "0\n")
-                {
-                    if (check_2 != 0)
-                    {
-                        ui->listWidget->addItem("\nme:");
-                        check_2 = 0;
-                    }
-                }
-                else if (temp == "1\n")
-                {
-                    if (check_2 != 1)
-                    {
-                        ui->listWidget->addItem('\n' + name + ":");
-                        check_2 = 1;
-                    }
-                }
-            }
-            else
-                ui->listWidget->addItem(temp_2.c_str());
-            counter++;
-        }
-        file.close();
-    }
-    else if (check == 3)
-    {
-        int counter = 0;
-        QFile file("C:/project/" + management::username + '/' + project_window_3::project_name + "/message/" + name + ".txt");
-        file.open(QIODevice::ReadOnly);
-        int check_2 = 3;
-        while (!file.atEnd())
-        {
-            QString temp = file.readLine();
-            std::string temp_2 = temp.toStdString();
-            temp_2.pop_back();
-            if (counter % 2 == 0)
-            {
-                if (temp == "0\n")
-                {
-                    if (check_2 != 0)
-                    {
-                        ui->listWidget->addItem("\nme:");
-                        check_2 = 0;
-                    }
-                }
-                else if (temp == "1\n")
-                {
-                    if (check_2 != 1)
-                    {
-                        ui->listWidget->addItem('\n' + name + ":");
-                        check_2 = 1;
-                    }
-                }
-            }
-            else
-                ui->listWidget->addItem(temp_2.c_str());
-            counter++;
-        }
-        file.close();
-    }
-    else if (check == 4)
-    {
-        int counter = 0;
-        QFile file("C:/project/" + management::username + '/' + project_window_4::project_name + "/message/" + name + ".txt");
-        file.open(QIODevice::ReadOnly);
-        int check_2 = 3;
-        while (!file.atEnd())
-        {
-            QString temp = file.readLine();
-            std::string temp_2 = temp.toStdString();
-            temp_2.pop_back();
-            if (counter % 2 == 0)
-            {
-                if (temp == "0\n")
-                {
-                    if (check_2 != 0)
-                    {
-                        ui->listWidget->addItem("\nme:");
-                        check_2 = 0;
-                    }
-                }
-                else if (temp == "1\n")
-                {
-                    if (check_2 != 1)
-                    {
-                        ui->listWidget->addItem('\n' + name + ":");
-                        check_2 = 1;
-                    }
-                }
-            }
-            else
-                ui->listWidget->addItem(temp_2.c_str());
-            counter++;
-        }
-        file.close();
-    }
 }
 
 void message::on_pushButton_4_clicked()
@@ -252,5 +129,4 @@ void message::on_pushButton_4_clicked()
         file_2.close();
     }
     ui->lineEdit->clear();
-    show_message();
 }

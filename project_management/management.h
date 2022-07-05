@@ -18,6 +18,14 @@
 #include "select_user.h"
 #include "message.h"
 #include "completed_task.h"
+#include "worker.h"
+#include <QThread>
+#include "worker_window_1.h"
+#include "my_info.h"
+#include "worker_window_2.h"
+#include "worker_window_3.h"
+#include "worker_window_4.h"
+#include "worker_message.h"
 
 namespace Ui
 {
@@ -36,19 +44,21 @@ class management : public QMainWindow
 
     friend void add_member::on_buttonBox_accepted();
 
-    friend void project_window_1::set_users();
+    friend void project_window_1::set_users(QString u_name);
 
     friend void add_task::on_buttonBox_accepted();
 
-    friend void overall_status::set_all(int check);
+    friend void overall_status::set_users(QString u_name);
+
+    friend void overall_status::set_tasks(QString t_name);
 
     friend void assign_task::on_buttonBox_accepted();
 
-    friend void project_window_2::set_users();
+    friend void project_window_2::set_users(QString u_name);
 
-    friend void project_window_3::set_users();
+    friend void project_window_3::set_users(QString u_name);
 
-    friend void project_window_4::set_users();
+    friend void project_window_4::set_users(QString u_name);
 
     friend void remove_task::on_buttonBox_accepted();
 
@@ -56,11 +66,27 @@ class management : public QMainWindow
 
     friend void select_user::on_buttonBox_accepted();
 
-    friend void message::show_message();
+    friend void message::show_message(QString mess);
 
     friend void message::on_pushButton_4_clicked();
 
     friend void completed_task::on_buttonBox_accepted();
+
+    friend void Worker::doWork();
+
+    friend void worker_window_1::doWork();
+
+    friend void my_info::set_info();
+
+    friend void worker_window_2::doWork();
+
+    friend void worker_window_3::doWork();
+
+    friend void worker_window_4::doWork();
+
+    friend void worker_overall::doWork();
+
+    friend void worker_message::doWork();
 
 public:
     explicit management(QString username, QWidget *parent = nullptr);
@@ -80,6 +106,10 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void clear();
+
+    void set_projects(QString p_name);
+
 private:
     Ui::management *ui;
 
@@ -89,7 +119,9 @@ private:
 
     void set_profile();
 
-    void set_projects();
+    QThread *thread;
+
+    Worker *worker;
 };
 
 #endif // MANAGEMENT_H

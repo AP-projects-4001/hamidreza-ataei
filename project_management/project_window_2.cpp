@@ -32,7 +32,16 @@ project_window_2::project_window_2(QString project_name, QWidget *parent): QDial
         ui->pushButton_6->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
         ui->pushButton_8->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
     }
-    set_users();
+    thread = new QThread();
+    worker = new worker_window_2();
+    worker->moveToThread(thread);
+    connect(worker, SIGNAL(valueChanged(QString)), this, SLOT(set_users(QString)));
+    connect(worker, SIGNAL(clear()), this, SLOT(clear()));
+    connect(worker, SIGNAL(workRequested()), thread, SLOT(start()));
+    connect(thread, SIGNAL(started()), worker, SLOT(doWork()));
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()), Qt::DirectConnection);
+    thread->wait();
+    worker->requestWork();
 }
 
 project_window_2::~project_window_2()
@@ -40,29 +49,23 @@ project_window_2::~project_window_2()
     delete ui;
 }
 
-void project_window_2::set_users()
+void project_window_2::set_users(QString u_name)
 {
-    ui->listWidget->clear();
     QListWidgetItem *widget = new QListWidgetItem();
-    std::string temp = "\nme\n";
-    widget->setText(temp.c_str());
+    if (management::username +'\n' == u_name)
+        widget->setText("\nme\n");
+    else
+    {
+        QString temp = "\n" + u_name;
+        widget->setText(temp);
+    }
     widget->setTextAlignment(Qt::AlignCenter);
     ui->listWidget->addItem(widget);
-    QFile file("C:/project/" + management::username + '/' + project_name + "/all_users.txt");
-    file.open(QIODevice::ReadOnly);
-    while (!file.atEnd())
-    {
-        std::string temp_2 = "\n" + file.readLine().toStdString();
-        if ('\n' + management::username.toStdString() + '\n' != temp_2)
-        {
-            QListWidgetItem *widget_2 = new QListWidgetItem();
-            widget_2->setText(temp_2.c_str());
-            widget_2->setTextAlignment(Qt::AlignCenter);
-            ui->listWidget->addItem(widget_2);
-        }
-        file.readLine();
-    }
-    file.close();
+}
+
+void project_window_2::clear()
+{
+    ui->listWidget->clear();
 }
 
 void project_window_2::on_pushButton_6_clicked()

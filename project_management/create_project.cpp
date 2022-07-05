@@ -34,7 +34,10 @@ void create_project::on_buttonBox_accepted()
     {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle("Error");
-        msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        if (management::theme == 0)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+        else if (management::theme == 1)
+            msgBox->setStyleSheet("QLabel{min-width: 200px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
         msgBox->setInformativeText("field is required ✘");
         msgBox->exec();
         return;
@@ -48,7 +51,10 @@ void create_project::on_buttonBox_accepted()
         {
             QMessageBox *msgBox = new QMessageBox(this);
             msgBox->setWindowTitle("Error");
-            msgBox->setStyleSheet("QLabel{min-width: 320px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            if (management::theme == 0)
+                msgBox->setStyleSheet("QLabel{min-width: 320px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+            else if (management::theme == 1)
+                msgBox->setStyleSheet("QLabel{min-width: 320px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
             msgBox->setInformativeText("you have already created this project ✘");
             msgBox->exec();
             return;
@@ -73,7 +79,10 @@ void create_project::on_buttonBox_accepted()
     file_4.close();
     QMessageBox *msgBox = new QMessageBox(this);
     msgBox->setWindowTitle("successfully create");
-    msgBox->setStyleSheet("QLabel{min-width: 320px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+    if (management::theme == 0)
+        msgBox->setStyleSheet("QLabel{min-width: 320px; color: rgb(171, 171, 171); font: 75 12pt Georgia;}");
+    else if (management::theme == 1)
+        msgBox->setStyleSheet("QLabel{min-width: 320px; color: rgb(84, 84, 84); font: 75 12pt Georgia;}");
     msgBox->setInformativeText("project was created successfully ✔");
     msgBox->exec();
     return;

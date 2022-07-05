@@ -2,6 +2,7 @@
 #define MESSAGE_H
 
 #include <QDialog>
+#include "worker_message.h"
 
 namespace Ui
 {
@@ -12,22 +13,31 @@ class message : public QDialog
 {
     Q_OBJECT
 
+    friend void worker_message::doWork();
+
 public:
     explicit message(int check, QString name, QWidget *parent = nullptr);
 
-    void show_message();
-
     ~message();
+
+private slots:
+    void clear();
 
 public slots:
     void on_pushButton_4_clicked();
 
+    void show_message(QString mess);
+
 private:
     Ui::message *ui;
 
-    int check;
+    static int check;
 
-    QString name;
+    static QString name;
+
+    QThread *thread;
+
+    worker_message *worker;
 };
 
 #endif // MESSAGE_H

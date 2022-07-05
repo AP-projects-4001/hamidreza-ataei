@@ -18,6 +18,7 @@ SOURCES += \
     login.cpp \
     management.cpp \
     message.cpp \
+    my_info.cpp \
     overall_status.cpp \
     project_window_1.cpp \
     project_window_2.cpp \
@@ -25,7 +26,14 @@ SOURCES += \
     project_window_4.cpp \
     remove_task.cpp \
     select_user.cpp \
-    sign_up.cpp
+    sign_up.cpp \
+    worker.cpp \
+    worker_message.cpp \
+    worker_overall.cpp \
+    worker_window_1.cpp \
+    worker_window_2.cpp \
+    worker_window_3.cpp \
+    worker_window_4.cpp
 
 HEADERS += \
     add_member.h \
@@ -40,6 +48,7 @@ HEADERS += \
     login.h \
     management.h \
     message.h \
+    my_info.h \
     overall_status.h \
     project_window_1.h \
     project_window_2.h \
@@ -47,7 +56,14 @@ HEADERS += \
     project_window_4.h \
     remove_task.h \
     select_user.h \
-    sign_up.h
+    sign_up.h \
+    worker.h \
+    worker_message.h \
+    worker_overall.h \
+    worker_window_1.h \
+    worker_window_2.h \
+    worker_window_3.h \
+    worker_window_4.h
 
 FORMS += \
     add_member.ui \
@@ -62,6 +78,7 @@ FORMS += \
     login.ui \
     management.ui \
     message.ui \
+    my_info.ui \
     overall_status.ui \
     project_window_1.ui \
     project_window_2.ui \
