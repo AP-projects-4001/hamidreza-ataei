@@ -75,6 +75,8 @@ void worker_overall::doWork()
             {
                 std::string temp = '\n' + file.readLine().toStdString();
                 temp.pop_back();
+                if (temp == '\n' + management::username.toStdString())
+                    temp = "\nme";
                 temp = temp + "          .....          access level: " +  file.readLine().toStdString();
                 emit valueChanged_u(QString::fromStdString(temp));
             }
@@ -88,6 +90,8 @@ void worker_overall::doWork()
             {
                 std::string temp = '\n' + file.readLine().toStdString();
                 temp.pop_back();
+                if (temp == '\n' + management::username.toStdString())
+                    temp = "\nme";
                 temp = temp + "          .....          access level: " +  file.readLine().toStdString();
                 emit valueChanged_u(QString::fromStdString(temp));
             }
@@ -141,7 +145,11 @@ void worker_overall::doWork()
                     temp = temp + "          .....          assigned to ";
                 else
                     temp = temp + "          .....          completed by ";
-                temp = temp + file_2.readLine().toStdString();
+                QString temp_3 = file_2.readLine();
+                if (temp_3 == management::username + '\n')
+                    temp = temp + "me\n";
+                else
+                    temp = temp + temp_3.toStdString();
                 emit valueChanged_t(QString::fromStdString(temp));
             }
             file_2.close();
@@ -166,7 +174,11 @@ void worker_overall::doWork()
                     temp = temp + "          .....          assigned to ";
                 else
                     temp = temp + "          .....          completed by ";
-                temp = temp + file_2.readLine().toStdString();
+                QString temp_3 = file_2.readLine();
+                if (temp_3 == management::username + '\n')
+                    temp = temp + "me\n";
+                else
+                    temp = temp + temp_3.toStdString();
                 emit valueChanged_t(QString::fromStdString(temp));
             }
             file_2.close();

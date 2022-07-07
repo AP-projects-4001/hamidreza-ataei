@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>310</width>
-    <height>440</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>310</width>
-    <height>440</height>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>310</width>
-    <height>440</height>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>380</y>
+     <y>440</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -64,7 +64,7 @@ background-color: rgb(50, 50, 50);</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>340</y>
+     <y>400</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -96,7 +96,7 @@ background-color: rgb(50, 50, 50);</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>300</y>
+     <y>360</y>
      <width>250</width>
      <height>30</height>
     </rect>
@@ -128,7 +128,7 @@ background-color: rgb(50, 50, 50);</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>30</y>
+     <y>90</y>
      <width>250</width>
      <height>250</height>
     </rect>
@@ -157,7 +157,7 @@ background-color: rgb(50, 50, 50);</string>
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>340</y>
+     <y>400</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -189,7 +189,7 @@ background-color: rgb(50, 50, 50);</string>
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>380</y>
+     <y>440</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -215,6 +215,37 @@ background-color: rgb(50, 50, 50);</string>
    </property>
    <property name="text">
     <string>message</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>250</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Georgia</family>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(144, 48, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
    </property>
   </widget>
  </widget>

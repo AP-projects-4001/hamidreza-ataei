@@ -32,6 +32,8 @@ project_window_3::project_window_3(QString project_name, QWidget *parent): QDial
         ui->pushButton_5->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
         ui->pushButton_6->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
     }
+    ui->label->setText(project_name);
+    ui->label->setAlignment(Qt::AlignCenter);
     thread = new QThread();
     worker = new worker_window_3();
     worker->moveToThread(thread);

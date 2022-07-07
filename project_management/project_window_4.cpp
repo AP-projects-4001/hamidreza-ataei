@@ -28,6 +28,8 @@ project_window_4::project_window_4(QString project_name, QWidget *parent): QDial
         ui->pushButton_6->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
         ui->pushButton_7->setStyleSheet("color: rgb(84, 84, 84);\nbackground-color: rgb(205, 205, 205)");
     }
+    ui->label->setText(project_name);
+    ui->label->setAlignment(Qt::AlignCenter);
     thread = new QThread();
     worker = new worker_window_4();
     worker->moveToThread(thread);
