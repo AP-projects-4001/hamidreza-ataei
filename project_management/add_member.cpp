@@ -107,6 +107,7 @@ void add_member::on_buttonBox_accepted()
     }
     file_2.close();
     QFile file_3("C:/project/" + ui->lineEdit->text() + "/projects.txt");
+    file_3.open(QIODevice::ReadOnly);
     while (!file_3.atEnd())
     {
         QString temp = file_3.readLine();
